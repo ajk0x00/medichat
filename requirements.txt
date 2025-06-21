@@ -8,4 +8,3 @@ langchain-groq
 streamlit
 sentence_transformers
 uvicorn[standard]
-supervisor-stdout
