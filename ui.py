@@ -8,8 +8,8 @@ base_api = 'http://localhost:8000'
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-if "uploaded_file_name" not in st.session_state:
-    st.session_state.uploaded_file_name = None
+if "already_uploaded_files" not in st.session_state:
+    st.session_state.already_uploaded_files= []
 
 
 # Display chat messages from history on app rerun
@@ -18,15 +18,21 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 # Upload document section
-uploaded_file = st.sidebar.file_uploader("Upload a document", type=["txt", "pdf", "docx"])
-if uploaded_file is not None and uploaded_file.name != st.session_state.uploaded_file_name:
+uploaded_files = st.sidebar.file_uploader(
+    "Upload a document",
+    type=["txt", "pdf", "docx"],
+    accept_multiple_files=True
+)
+for uploaded_file in uploaded_files:
+    if uploaded_file.name in st.session_state.already_uploaded_files:
+        continue
     files = {"file": (uploaded_file.name, uploaded_file, uploaded_file.type)}
     try:
         with st.spinner("Uploading..."):
             response = requests.post(f"{base_api}/upload", files=files)
             if response.status_code == 200:
                 st.success("File uploaded successfully!")
-                st.session_state.uploaded_file_name = uploaded_file.name
+                st.session_state.already_uploaded_files.append(uploaded_file.name)
             else:
                 st.error(f"Upload failed: {response.text}")
     except Exception as e:
