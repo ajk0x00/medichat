@@ -4,3 +4,5 @@ chromadb
 sentence_transformers
 langchain-text-splitters
 tiktoken
+dotenv
+langchain-groq

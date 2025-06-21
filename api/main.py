@@ -1,9 +1,14 @@
+import utils.llm as llm
+
 from fastapi import FastAPI, UploadFile
 
 from models import Question
 from utils.pdf_utils import extract_text_from_pdf
 from utils.vector_db import add_text_to_vector_db, query_vector_db
+from dotenv import load_dotenv
+load_dotenv()
 
+llm.init()
 app = FastAPI()
 
 
@@ -21,7 +26,10 @@ async def read_root(file: UploadFile):
 
 @app.post("/ask")
 def ask(query: Question):
+    print(f"Received question: {query.question}")
     results = query_vector_db(query.question)
+    print(f"Retrieved results: {results}")
+    response = llm.summarize(query.question, results)
     return {    
-        "results": results
+        "results": response
     }
