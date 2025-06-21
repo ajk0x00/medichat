@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
+import time
 
-st.title("Echo Bot")
 
 base_api = 'http://localhost:8000'
 
@@ -11,7 +11,16 @@ if "messages" not in st.session_state:
 if "already_uploaded_files" not in st.session_state:
     st.session_state.already_uploaded_files= []
 
+if "backend_ready" not in st.session_state:
+    st.session_state.backend_ready = False
 
+while not st.session_state.backend_ready:
+    with st.spinner("Wait for it...", show_time=True):
+        try:
+            response = requests.get(f"{base_api}/")
+            st.session_state.backend_ready = True
+        except:
+            time.sleep(3)
 # Display chat messages from history on app rerun
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
