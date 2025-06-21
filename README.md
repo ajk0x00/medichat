@@ -20,6 +20,10 @@ How to run
   ```
   sudo apt install supervisor
   ```
+- Export Groq api key
+  ```
+  export GROQ_API_KEY="<TOKEN>"
+  ```
 - Run the application
   ```
   supervisord -c supervisord.conf
