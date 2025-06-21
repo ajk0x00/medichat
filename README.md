@@ -6,6 +6,10 @@ An application built to answer medical questions based on the uploaded context.
 How to run
 ==========
 
+- Clone the project
+  ```
+  git clone https://github.com/ajk0x00/medichat.git
+  ```
 - Create a virtual environment using virtualenv and activate the env
   ```
   virtualenv .venv
