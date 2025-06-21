@@ -15,6 +15,9 @@ app = FastAPI()
 @app.post("/upload")
 async def read_root(file: UploadFile):
     if file.content_type == 'application/pdf':
+        with open(f"files/{file.filename}", "wb") as f:
+            content = await file.read()
+            f.write(content)
         file_content = extract_text_from_pdf(f"files/{file.filename}")
     else:
         file_content = await file.read()
