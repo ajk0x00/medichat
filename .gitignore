@@ -1,5 +1,6 @@
 *.pyc
 .vscode/*
 .env
-files/*
+files/*.pdf
+files/*.txt
 *.log

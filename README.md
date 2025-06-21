@@ -32,3 +32,4 @@ How to run
   ```
   supervisord -c supervisord.conf
   ```
+- **First launch may take 10-15 seconds to download local models used in the application**
