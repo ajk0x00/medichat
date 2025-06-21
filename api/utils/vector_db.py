@@ -54,9 +54,3 @@ def query_vector_db(query: str, n_results: int = 5) -> list[str]:
     reranked = sorted(zip(documents, scores), key=lambda x: x[1], reverse=True)
     best_results = [doc for doc, _ in reranked]
     return best_results
-
-if __name__ == "__main__":
-    sample_text = "This is a sample text to be added to the vector database."
-    add_text_to_vector_db(sample_text)
-    query_results = query_vector_db("sample text")
-    print(query_results)

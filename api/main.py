@@ -6,7 +6,6 @@ from api.models import Question
 from api.utils.pdf_utils import extract_text_from_pdf
 from api.utils.vector_db import add_text_to_vector_db, query_vector_db
 from dotenv import load_dotenv
-print('starting the application')
 
 load_dotenv()
 

@@ -4,6 +4,7 @@ import time
 
 
 base_api = 'http://localhost:8000'
+st.title("Medinotes Chatbot")
 
 if "messages" not in st.session_state:
     st.session_state.messages = []

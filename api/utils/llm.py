@@ -37,15 +37,3 @@ def summarize(question, context_array: list[str]) -> str:
         "context": context
     }).content
     return response
-
-if __name__ == "__main__":
-    from dotenv import load_dotenv
-    load_dotenv()
-    init()
-    sample_question = "What is the treatment for diabetes?"
-    sample_context = [
-        "Diabetes is a chronic disease that occurs when the body cannot produce enough insulin or use it effectively.",
-        "Treatment for diabetes includes lifestyle changes, medication, and monitoring blood sugar levels."
-    ]
-    response = summarize(sample_question, sample_context)
-    print(response)
