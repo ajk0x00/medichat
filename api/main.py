@@ -1,7 +1,8 @@
 from fastapi import FastAPI, UploadFile
 
+from models import Question
 from utils.pdf_utils import extract_text_from_pdf
-from utils.vector_db import add_text_to_vector_db
+from utils.vector_db import add_text_to_vector_db, query_vector_db
 
 app = FastAPI()
 
@@ -16,4 +17,11 @@ async def read_root(file: UploadFile):
     return {
         "message": "File uploaded successfully",
         "filename": file.filename
+    }
+
+@app.post("/ask")
+def ask(query: Question):
+    results = query_vector_db(query.question)
+    return {    
+        "results": results
     }
