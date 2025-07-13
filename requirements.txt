@@ -8,3 +8,4 @@ langchain-groq
 streamlit
 sentence_transformers
 uvicorn[standard]
+pymupdf4llm

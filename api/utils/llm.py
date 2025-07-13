@@ -13,8 +13,8 @@ def init():
    summarize_prompt = PromptTemplate(
          input_variables=["question", "context"],
          template="""
-            You are a helpful assistant expertised in answering  medical questions based on given context.
-            Answer the question based on the provided context only. Use context only if it is necessary.
+            You are a helpful assistant expertised in answering  medical questions based on given context annotated with markdown format.
+            Answer the question based on the provided context only. Use context only if it is necessary. 
             You should respond like a seasoned medical professional, providing clear and concise answers.
 
             If the context does not provide enough information to answer the question, respond with "Unable to answer the question with the given data".
