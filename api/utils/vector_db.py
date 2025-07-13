@@ -44,7 +44,7 @@ def query_vector_db(query: str, n_results: int = 5) -> list[str]:
     """Queries the vector database and returns the top n results."""
     results = medinotes_collection.query(
         query_texts=[query],
-        n_results=n_results
+        n_results=n_results+5
     )
     documents = results['documents'][0]
     rerank_input = [(query, doc) for doc in documents]
@@ -53,4 +53,4 @@ def query_vector_db(query: str, n_results: int = 5) -> list[str]:
     scores = reranker.predict(rerank_input)
     reranked = sorted(zip(documents, scores), key=lambda x: x[1], reverse=True)
     best_results = [doc for doc, _ in reranked]
-    return best_results
+    return best_results[:n_results]
