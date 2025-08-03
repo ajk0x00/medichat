@@ -6,10 +6,11 @@ from api.models import Question
 from api.utils.pdf_utils import extract_text_from_pdf
 from api.utils.vector_db import add_text_to_vector_db, query_vector_db
 from dotenv import load_dotenv
+from api.utils.llm import QAgent
 
 load_dotenv()
 
-llm.init()
+agent = QAgent()
 app = FastAPI()
 
 
@@ -30,7 +31,7 @@ async def read_root(file: UploadFile):
 
 @app.post("/ask")
 def ask(query: Question):
-    response = llm.ask(query.question)
+    response = agent.ask(query.question)
     return {    
         "results": response
     }
