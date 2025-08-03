@@ -1,3 +1,4 @@
+from random import random
 from chromadb import Client
 from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
 
@@ -37,7 +38,7 @@ def add_text_to_vector_db(text: str):
 
     medinotes_collection.add(
         documents=chunks,
-        ids=[str(hash(i)) for i in chunks]
+        ids=[str(hash(i))+str(random()) for i in chunks]
     )
 
 def query_vector_db(query: str, n_results: int = 5) -> list[str]:

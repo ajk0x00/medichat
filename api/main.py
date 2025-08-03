@@ -30,10 +30,7 @@ async def read_root(file: UploadFile):
 
 @app.post("/ask")
 def ask(query: Question):
-    print(f"Received question: {query.question}")
-    results = query_vector_db(query.question)
-    print(f"Retrieved results: {results}")
-    response = llm.summarize(query.question, results)
+    response = llm.ask(query.question)
     return {    
         "results": response
     }
