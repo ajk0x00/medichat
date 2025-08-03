@@ -1,4 +1,4 @@
 import pymupdf4llm
 
 def extract_text_from_pdf(filepath: str) -> str:
-    return pymupdf4llm.to_markdown(filepath, embed_images=True)
+    return pymupdf4llm.to_markdown(filepath)
